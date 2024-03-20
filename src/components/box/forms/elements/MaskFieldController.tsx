@@ -1,10 +1,11 @@
 import {PatternFormat} from "react-number-format";
 import {TextField} from "@mui/material";
-import {Controller} from "react-hook-form";
+import {Control, Controller} from "react-hook-form";
+import {FORM_FIELD, GenFormSchema} from "../helpers/schemas.ts";
 
 interface IMaskFieldController {
-  name: string
-  control: any
+  name: FORM_FIELD
+  control: Control<GenFormSchema>
   format: string
   label: string
   placeholder: string
@@ -14,10 +15,12 @@ interface IMaskFieldController {
 const MaskFieldController = ({ name, control, format, label, placeholder, error }: IMaskFieldController) => {
   return (
     <Controller
+      defaultValue=''
       name={name}
       control={control}
-      render={({ field }) => (
+      render={({ field: { ref, ...field } }) => (
         <PatternFormat
+          inputRef={ref}
           format={format}
           customInput={TextField}
           onValueChange={(values) => {
@@ -29,12 +32,10 @@ const MaskFieldController = ({ name, control, format, label, placeholder, error 
             })
           }}
           size={'small'}
-          valueIsNumericString
           allowEmptyFormatting={false}
           placeholder={placeholder}
           label={label}
           error={error}
-          style={{ paddingLeft: '0 !important' }}
           InputProps={{
             label
           }}

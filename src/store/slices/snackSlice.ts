@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand'
-import {FC, ReactElement, ReactNode} from "react";
+import {ReactElement} from "react";
 
 export enum SNACK_TYPE {
     SUCCESS = 'success',
@@ -23,7 +23,6 @@ export type Snack = ISnackSlice & ISnackActions
 
 export const createSnackSlice: StateCreator<Snack> = (
     set,
-    get
 ) => ({
     openSnack: false,
     textSnack: '',

@@ -1,11 +1,11 @@
 import {FormControl, InputLabel, Select} from "@mui/material";
 import {Control, Controller} from "react-hook-form";
 import {ReactNode} from "react";
-import {FormSchema} from "../schemas.ts";
+import {FORM_FIELD, GenFormSchema} from "../helpers/schemas.ts";
 
 interface ISelectController {
-  name: string
-  control: Control<FormSchema>
+  name: FORM_FIELD
+  control: Control<GenFormSchema>
   label: string
   error: boolean
   children: ReactNode
@@ -24,6 +24,7 @@ const SelectController = ({
         {label}
       </InputLabel>
       <Controller
+        defaultValue=''
         control={control}
         name={name}
         render={({ field }) => {

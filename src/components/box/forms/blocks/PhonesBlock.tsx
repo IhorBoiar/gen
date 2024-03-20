@@ -3,10 +3,10 @@ import PhoneFieldController from "../elements/PhoneFieldController.tsx";
 import CloseIcon from "@mui/icons-material/Close";
 import {useState} from "react";
 import {Control, FieldErrors} from "react-hook-form";
-import {FormSchema} from "../schemas.ts";
+import {FORM_FIELD, GenFormSchema} from "../helpers/schemas.ts";
 
-interface IPhonesBlock<TFieldValues extends FormSchema = FormSchema> {
-  control: Control<FormSchema>
+interface IPhonesBlock<TFieldValues extends GenFormSchema = GenFormSchema> {
+  control: Control<GenFormSchema>
   errors: FieldErrors<TFieldValues>
 }
 
@@ -21,32 +21,39 @@ const PhonesBlock = ({ control, errors }: IPhonesBlock) => {
     setPhones(phones - 1)
   }
 
+
   return (
-    <>
-      {Array.from({ length: phones }, (_, i) => (
-        <Box className={'flexJustifyBetween gap5'}>
-          <PhoneFieldController
-            name={`phone${i + 1}`}
-            control={control}
-            error={!!errors[`phone${i+1}`]}
-            label={'Phone'}
-          />
-          {phones === i + 1 && phones !== 1 && (
-            <IconButton
-              onClick={() => deletePhone()}
-            >
-              <CloseIcon />
-            </IconButton>
-          )}
-        </Box>
-      ))}
+    <Box className='phonesBlock'>
+      <Box className='phonesBlock__list'>
+        {Array.from({ length: phones }, (_, i) => (
+          <Box key={i} className='phonesBlock__listItem'>
+            <PhoneFieldController
+              name={FORM_FIELD[`PHONE${i + 1}` as keyof typeof FORM_FIELD]}
+              control={control}
+              error={!!errors[FORM_FIELD[`PHONE${i + 1}` as keyof typeof FORM_FIELD]]}
+              label={'Phone'}
+            />
+            {phones === i + 1 && phones !== 1 && (
+              <IconButton
+                size={'small'}
+                className='phonesBlock__iconDelete'
+                onClick={() => deletePhone()}
+              >
+                <CloseIcon />
+              </IconButton>
+            )}
+          </Box>
+        ))}
+      </Box>
       {phones < 3 && (
         <Button
+          className='phonesBlock__button'
+          sx={{ width: 'fit-content' }}
           variant={'contained'}
           onClick={addPhone}
-        >Add phone (Max 3)</Button>
+        >Add phone</Button>
       )}
-    </>
+    </Box>
   )
 }
 

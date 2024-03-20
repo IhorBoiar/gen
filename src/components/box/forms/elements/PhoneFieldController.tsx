@@ -1,10 +1,11 @@
 import {PatternFormat} from "react-number-format";
 import {Box, TextField} from "@mui/material";
-import {Controller} from "react-hook-form";
+import {Control, Controller} from "react-hook-form";
+import {FORM_FIELD, GenFormSchema} from "../helpers/schemas.ts";
 
 interface IPhoneFieldController {
-  name: string
-  control: any
+  name: FORM_FIELD
+  control: Control<GenFormSchema>
   error: boolean
   label: string
 }
@@ -12,11 +13,13 @@ interface IPhoneFieldController {
 const PhoneFieldController = ({ name, control, error, label }: IPhoneFieldController) => {
   return (
     <Controller
+      defaultValue=''
       name={name}
       control={control}
-      render={({ field }) => (
+      render={({ field: { ref, ...field } }) => (
         <PatternFormat
-          format="## ## ## ###"
+          inputRef={ref}
+          format="### ### ## ##"
           customInput={TextField}
           onValueChange={(values) => {
             field.onChange({
@@ -29,29 +32,14 @@ const PhoneFieldController = ({ name, control, error, label }: IPhoneFieldContro
           size={'small'}
           valueIsNumericString
           allowEmptyFormatting={false}
-          placeholder="00 00 00 000"
+          placeholder="097 000 00 00"
           label={label}
           error={error}
           style={{ paddingLeft: '0 !important' }}
           InputProps={{
             label,
             startAdornment: (
-              <Box sx={{ marginRight: '8px' }}>+38</Box>
-              // <InputAdornment
-              //   position="start"
-              //   style={{
-              //     marginRight: '-8px',
-              //   }}
-              // >
-              //   <Typography
-              //     style={{
-              //       fontSize: '14px',
-              //       lineHeight: 'initial',
-              //     }}
-              //   >
-              //     +38
-              //   </Typography>
-              // </InputAdornment>
+              <Box sx={{ marginRight: '4px', marginTop: '1px' }}>+38</Box>
             ),
           }}
         />

@@ -1,20 +1,5 @@
 @import "mixins";
 
-.cursor {
-  &Pointer {
-    cursor: pointer;
-  }
-  &None {
-    cursor: none;
-  }
-}
-
-.events {
-  &None {
-    pointer-events: none;
-  }
-}
-
 .flex {
   display: flex;
   &Column {
@@ -85,41 +70,5 @@
   }
   &30 {
     gap: 30px;
-  }
-}
-
-.textAlign {
-  &Center {
-    text-align: center;
-  }
-  &Right {
-    text-align: right;
-  }
-  &Left {
-    text-align: left;
-  }
-}
-
-.smallText {
-  &Gray {
-    @include f12;
-    color: $gray;
-  }
-  &Bold {
-    @include f12;
-    font-weight: 700;
-  }
-  &Underline {
-    @include f12;
-    text-decoration: underline;
-  }
-}
-
-.page {
-  margin-top: 20px;
-  margin-bottom: 120px;
-  @include md {
-    margin-top: 0;
-    margin-bottom: 70px;
   }
 }

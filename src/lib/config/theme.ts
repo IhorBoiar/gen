@@ -1,12 +1,6 @@
 import { createTheme } from '@mui/material/styles'
 
 const theme = createTheme({
-	palette: {
-		// mode: 'light',
-		// primary: {
-		// 	main: '#FFF',
-		// },
-	},
 	typography: {
 		h1: {
 			fontSize: 30,
@@ -42,13 +36,6 @@ const theme = createTheme({
 			fontSize: 10,
 		},
 	},
-	// components: {
-	// 	MuiTextField: {
-	// 		variants: {
-	//
-	// 		}
-	// 	}
-	// }
 })
 
 export default theme

@@ -1,9 +1,10 @@
 import {TextField} from "@mui/material";
 import {Control, Controller} from "react-hook-form";
+import {FORM_FIELD, GenFormSchema} from "../helpers/schemas.ts";
 
 interface ITextFieldController {
-	control: any
-	name: string
+	control: Control<GenFormSchema>
+	name: FORM_FIELD
 	label: string
 	error: boolean
 }
@@ -13,9 +14,11 @@ const TextFieldController = ({ control, name, error, label }: ITextFieldControll
 		<Controller
 			control={control}
 			name={name}
-			render={({ field }) => (
+			defaultValue=''
+			render={({ field: { ref, ...field } }) => (
 				<TextField
 					{...field}
+					inputRef={ref}
 					label={label}
 					error={error}
 					size={'small'}

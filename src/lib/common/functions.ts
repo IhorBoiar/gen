@@ -1,3 +1,6 @@
+import { UseFormSetFocus } from "react-hook-form";
+import {FORM_FIELD, GenFormSchema} from "../../components/box/forms/helpers/schemas.ts";
+
 const ukOperators = [
   '039',
   '050',
@@ -20,10 +23,19 @@ const ukOperators = [
 ]
 
 export const checkPhoneByOperator = (phone: string | undefined) => {
-  console.log(phone, '(phone)')
+  if (!phone) return true
   const operatorNum = phone?.substring(0, 3)
   for (let i = 0; i < ukOperators.length; i++) {
     if (operatorNum === ukOperators[i]) return true
   }
   return false
+}
+
+
+
+export const commonFocusField = (errors: string[], setFocus: UseFormSetFocus<GenFormSchema>) => {
+  const firstError: string | undefined = errors.find(error => error !== '');
+  if (firstError) {
+    setFocus(firstError as FORM_FIELD);
+  }
 }
