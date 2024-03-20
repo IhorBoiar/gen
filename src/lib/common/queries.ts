@@ -1,4 +1,4 @@
-export const mockEmailHandler = (): Promise<string> => {
+export const mockEmailHandler = async (): Promise<string> => {
   return new Promise((resolve: (value: string) => void, reject: (value: string) => void) => {
     setTimeout(() => {
       const random = Math.random();
@@ -11,7 +11,7 @@ export const mockEmailHandler = (): Promise<string> => {
   })
 }
 
-export const mockSubmit = (): Promise<string> => {
+export const mockSubmit = async (): Promise<string> => {
   return new Promise((resolve: (value: string) => void) => {
     setTimeout(() => {
       resolve('Form is success!');
