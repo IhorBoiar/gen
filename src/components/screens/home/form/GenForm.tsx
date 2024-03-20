@@ -28,7 +28,7 @@ const GenForm = () => {
   const [loading, setLoading] = useState<boolean>(false)
 
   const onSubmit = (data: GenFormSchema) => {
-    console.log(data, '(formData)')
+    console.log(data, '(form data)')
     setLoading(true)
 
     if (data.email) {
