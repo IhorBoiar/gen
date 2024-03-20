@@ -1,0 +1,125 @@
+@import "mixins";
+
+.cursor {
+  &Pointer {
+    cursor: pointer;
+  }
+  &None {
+    cursor: none;
+  }
+}
+
+.events {
+  &None {
+    pointer-events: none;
+  }
+}
+
+.flex {
+  display: flex;
+  &Column {
+    display: flex;
+    flex-direction: column;
+    &Right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    &Left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  &Justify {
+    &AlignCenter {
+      display: flex;
+      align-items: center;
+    }
+    &ContentCenter {
+      display: flex;
+      justify-content: center;
+    }
+    &ContentRight {
+      display: flex;
+      justify-content: flex-end;
+    }
+    &ContentLeft {
+      display: flex;
+      justify-content: flex-start;
+    }
+    &Between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &ContentAlignCenter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &Wrap{
+    flex-wrap: wrap;
+  }
+}
+
+.gap {
+  &0 {
+    gap: 0;
+  }
+  &5 {
+    gap: 5px;
+  }
+  &10 {
+    gap: 10px;
+  }
+  &15 {
+    gap: 15px;
+  }
+  &20 {
+    gap: 20px;
+  }
+  &25 {
+    gap: 25px;
+  }
+  &30 {
+    gap: 30px;
+  }
+}
+
+.textAlign {
+  &Center {
+    text-align: center;
+  }
+  &Right {
+    text-align: right;
+  }
+  &Left {
+    text-align: left;
+  }
+}
+
+.smallText {
+  &Gray {
+    @include f12;
+    color: $gray;
+  }
+  &Bold {
+    @include f12;
+    font-weight: 700;
+  }
+  &Underline {
+    @include f12;
+    text-decoration: underline;
+  }
+}
+
+.page {
+  margin-top: 20px;
+  margin-bottom: 120px;
+  @include md {
+    margin-top: 0;
+    margin-bottom: 70px;
+  }
+}

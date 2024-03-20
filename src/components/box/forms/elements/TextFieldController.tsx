@@ -2,7 +2,7 @@ import {TextField} from "@mui/material";
 import {Control, Controller} from "react-hook-form";
 
 interface ITextFieldController {
-	control: Control
+	control: any
 	name: string
 	label: string
 	error: boolean

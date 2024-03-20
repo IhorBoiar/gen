@@ -1,0 +1,43 @@
+@import "../mixins";
+
+.appPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  &__form {
+    padding: 30px;
+    border: 1px solid $gray2;
+    border-radius: 8px;
+  }
+}
+
+.titleInputs {
+  margin-bottom: 5px;
+  &__text {
+
+  }
+}
+
+.form {
+  &__title {
+    margin-bottom: 10px;
+  }
+  &__boxInputs {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.boxInputs {
+  margin-top: 10px;
+  &__title {
+    margin-bottom: 5px;
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

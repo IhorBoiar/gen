@@ -1,28 +1,44 @@
-import { FormControl, InputLabel, Select } from "@mui/material";
-import { Controller } from "react-hook-form";
+import {FormControl, InputLabel, Select} from "@mui/material";
+import {Control, Controller} from "react-hook-form";
+import {ReactNode} from "react";
+import {FormSchema} from "../schemas.ts";
+
+interface ISelectController {
+  name: string
+  control: Control<FormSchema>
+  label: string
+  error: boolean
+  children: ReactNode
+}
 
 const SelectController = ({
-                               name,
-                               label,
-                               control,
-                               defaultValue,
-                               children,
-                               ...props
-                             }) => {
-  const labelId = `${name}-label`;
+  name,
+  label,
+  control,
+  error,
+  children,
+}: ISelectController) => {
   return (
-    <FormControl {...props}>
-      <InputLabel id={labelId}>{label}</InputLabel>
+    <FormControl>
+      <InputLabel size={'small'} htmlFor={name}>
+        {label}
+      </InputLabel>
       <Controller
-        as={
-          <Select labelId={labelId} label={label}>
-            {children}
-          </Select>
-        }
-        name={name}
         control={control}
-        defaultValue={defaultValue}
-      />
+        name={name}
+        render={({ field }) => {
+          return (
+            <Select
+              {...field}
+              label={label}
+              error={error}
+              id={name}
+              size={'small'}
+            >
+              {children}
+            </Select>
+          )
+        }}/>
     </FormControl>
   );
 };

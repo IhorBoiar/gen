@@ -4,8 +4,7 @@ import { checkPhoneByOperator } from '../../../lib/common/functions'
 
 export const YUP_SCHEMA_PHONE = yup
   .string()
-  .required('Будь ласка введіть ваш телефон')
-  .length(10, 'Будь ласка введіть правильний телефон')
+  .length(9, 'Будь ласка введіть правильний телефон')
   .test('phone-operator', 'Будь ласка введіть правильний телефон', (value) =>
     checkPhoneByOperator(value)
   )
@@ -15,12 +14,14 @@ export const schema = yup
     firstName: yup.string().required('First name is required!'),
     lastName: yup.string().required('Last name is required!'),
     email: yup.string().email(),
-    phone: yup.string().required(),
+    phone1: YUP_SCHEMA_PHONE,
+    phone2: yup.string(),
+    phone3: yup.string(),
     country: yup.string().required(),
     address: yup.string().required(),
-    card: yup.string().required(),
-    code: yup.string().required(),
-    agree: yup.boolean().required()
+    card: yup.string().required().length(16),
+    code: yup.string().required().length(3),
+    agree: yup.boolean().required().oneOf([true], 'Field must be checked')
   })
 
 export type FormSchema = yup.InferType<typeof schema>

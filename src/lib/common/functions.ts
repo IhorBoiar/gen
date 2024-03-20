@@ -20,6 +20,7 @@ const ukOperators = [
 ]
 
 export const checkPhoneByOperator = (phone: string | undefined) => {
+  console.log(phone, '(phone)')
   const operatorNum = phone?.substring(0, 3)
   for (let i = 0; i < ukOperators.length; i++) {
     if (operatorNum === ukOperators[i]) return true
